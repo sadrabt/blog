@@ -1,0 +1,242 @@
+.login {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.btn {
+    background-color: #264F0B;
+    color: white;
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.app {
+    position: relative;
+    min-height: 100vh;
+}
+
+.login-card {
+    padding: 44px 28px;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    background-color: #fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    color: #303133;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+.login-card form input {
+    padding: 10px;
+    border:none;
+    border-bottom: #303133 1px solid;
+}
+
+.login-card form button {
+    padding: 10px;
+    border:none;
+    background: #264F0B;
+    border-radius: 5px;
+    color: white;
+}
+
+.login-card form button:hover {
+    color: #264F0B;
+    background: white;
+}
+
+.login-card h1 {
+    color: #264F0B;
+}
+
+.login-card span {
+    font-size: 13px;
+}
+
+.login-card p {
+    color: red;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.main-header {
+    position: sticky;
+    width: 100%;
+    height: 68px;
+}
+
+.logo {
+    padding: 5px 15px;
+    width: 256px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border: none;
+}
+
+.navigator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.menu-item {
+    padding: 0 15px;
+    position: relative;
+}
+
+.menu-item a {
+    line-height: 67.91px;
+    color: grey;
+}
+
+.menu-item a:hover {
+    color: grey;
+}
+
+.menu-item.active a,
+.menu-item a:hover {
+    color:#264F0B;
+}
+
+.menu-item.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background:#264F0B;
+}
+
+.navigator span {
+    margin: 0 10px;
+}
+
+.header-btn {
+    cursor: pointer;
+    background: #264F0B;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color:white;
+}
+
+.header-btn:hover {
+    background: white;
+    color: #264F0B;
+}
+
+.header-btn a {
+    color: white;
+    line-height: 31px;
+}
+
+.header-btn a:hover {
+    color: #264F0B;
+}
+
+
+.main-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #264F0B;
+    color: white;
+    position: absolute;
+    bottom:0;
+}
+
+.main-footer h6 {
+    padding: 20px 0;
+}
+
+
+.body-pd {
+    padding: 80px 160px 148px;
+}
+
+.thread-list .thread {
+    padding: 20px 0;
+    border-bottom: 1px solid #264F0B;
+}
+
+.thread-list .thread a {
+    color: #264F0B;
+}
+
+.likes-container {
+    display: inline-block;
+    padding: 0 10px
+}
+
+.likes-container i {
+    padding: 0 10px
+}
+
+.single .info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single .thread-body {
+    padding: 40px;
+}
+
+.single .action .social {
+    padding-top: 10px;
+    margin-left: -10px;
+}
+
+.single .action {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quick-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single .edit i.fa-trash {
+    color:red;
+}
+
+.single .edit i.fa-trash:hover {
+    cursor: pointer;
+    color:  rgb(137, 0, 0);
+}
+
+.single .edit i {
+    margin-left: 20px;
+}
+
+.write .title {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 40px;
+    padding: 0 10px;
+}
+
+
