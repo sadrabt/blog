@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import Like from "../components/Like.jsx";
 import Comment from "../components/Comment.jsx"
-import { Link, useNavigate, useLocation} from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import axios from "axios"
 import moment from "moment"
 
@@ -33,12 +33,10 @@ const Home = () => {
             <div className="quick-stats">
               <div className='social'>
                 <Like
-                  numberOfLikes={1}
-                  threadId={blog.id}
+                  blogId={blog.id}
                 />
                 <Comment
-                  numberOfComments={1}
-                  threadId={blog.id}
+                  blogId={blog.id}
                 />
               </div>
               <span>Posted: {moment(blog.date).fromNow()}</span>

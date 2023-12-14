@@ -186,11 +186,15 @@ img {
 
 .likes-container {
     display: inline-block;
-    padding: 0 10px
+    padding: 0 10px;
 }
 
 .likes-container i {
-    padding: 0 10px
+    padding: 0 10px;
+}
+
+.likes-container .fa-thumbs-up {
+    cursor: pointer;
 }
 
 .single .info {
@@ -217,11 +221,11 @@ img {
     justify-content: space-between;
 }
 
-.single .edit i.fa-trash {
+i.fa-trash{
     color:red;
 }
 
-.single .edit i.fa-trash:hover {
+i.fa-trash:hover{
     cursor: pointer;
     color:  rgb(137, 0, 0);
 }
@@ -239,4 +243,22 @@ img {
     padding: 0 10px;
 }
 
+
+.likes-container .liked {
+    color: green;
+}
+
+.replies .reply {
+    padding:10px 0;
+    border-bottom:  1px solid #264F0B;
+}
+
+.replies .reply i {
+    margin-right: 10px;
+}
+
+.replies .reply .info {
+    display: flex;
+    justify-content: space-between;
+}
 

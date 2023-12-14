@@ -2,7 +2,7 @@ import { database } from "../database.js";
 import jwt from "jsonwebtoken";
 
 export const getPosts = (req, res)=> {
-    const q = "SELECT * FROM posts";
+    const q = "SELECT P.* FROM posts P ";
     database.query(q, [], (err, data) => {
         if (err) return res.status(500).json(err)
         return res.status(200).json(data)
@@ -11,8 +11,7 @@ export const getPosts = (req, res)=> {
 
 
 export const getPost = (req, res)=> {
-    const q = "SELECT P.*, `username` FROM posts P, users U  WHERE P.uid = U.id AND P.id = ?";
-    console.log(req.params.id);
+    const q = "SELECT P.*, `username` FROM posts P JOIN users U ON P.uid = U.id WHERE P.id = ?";
     database.query(q, [req.params.id], (err, data) => {
         if (err) return res.status(500).json(err)
         return res.status(200).json(data)

@@ -1,2 +1,2 @@
 # blog
-Forum Web App
+Blog Web App

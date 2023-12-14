@@ -6,12 +6,14 @@ import axios from 'axios';
 import moment from "moment"
 import { Context } from '../context/context.jsx';
 import DOMPurify from "dompurify"
+import Reply from '../components/Reply.jsx';
 
 
 const Single = () => {
   const navigate = useNavigate();
   const {currentUser} = useContext(Context)
   const [blog, setBlog] = useState({})
+  const [replies, setReplies] = useState([])
 
   const loc = useLocation()
   const id = loc.pathname.split("/")[2]
@@ -20,6 +22,18 @@ const Single = () => {
       try {
         const resp = await axios.get(`/posts/${id}`)
         setBlog(resp.data[0])
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [id])
+
+  useEffect( () => {
+    const getData = async () => {
+      try {
+        const resp = await axios.get(`/comments/replies/${id}`)
+        setReplies(resp.data)
       } catch (err) {
         console.log(err)
       }
@@ -59,12 +73,10 @@ const Single = () => {
           <div className="action">
             <div className='social'>
                 <Like
-                  numberOfLikes={1}
-                  threadId={blog.id}
+                  blogId={blog.id}
                 />
                 <Comment
-                  numberOfComments={1}
-                  threadId={blog.id}
+                  blogId={blog.id}
                 />
               </div>
             {currentUser?.username === blog.username && (
@@ -77,8 +89,23 @@ const Single = () => {
             )}
           </div>
           <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}} className='thread-body'>
-            
           </p>
+
+          <div className="replies">
+          {
+            replies.filter(e => e.parent === null).map(reply => 
+              <Reply
+                key={reply.id}
+                commentId={reply.id}
+                username={reply.username}
+                content={reply.content}
+                time={reply.time}
+                data = {replies}
+                depth={0}
+              />
+            )
+          }
+        </div>
         </div>
       </div>
     </main>
