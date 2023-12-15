@@ -1,13 +1,23 @@
 import React, { useContext } from 'react'
 import moment from "moment"
 import { Context } from '../context/context'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-const Reply = ({commentId, username, content, time, data, depth}) => {
+const Reply = ({commentId, blogId, username, content, time, data, depth, update}) => {
     const {currentUser} = useContext(Context)
+    const navigate = useNavigate();
 
-    const onDelete = () => {
-        
+    const onDelete = async () => {
+        try {
+            console.log("hellow")
+          await axios.delete(`/comments/replies/${commentId}`)
+          update(commentId)
+        } catch (err) {
+          console.log(err)
+        }
     }
+
   return (
     <div  style={{"padding-left":`${depth*10}px`}}>
         <div className="reply">
@@ -34,6 +44,7 @@ const Reply = ({commentId, username, content, time, data, depth}) => {
                     data={data}
                     time={reply.time}
                     depth={depth+1}
+                    update={update}
                 />
             )
         }

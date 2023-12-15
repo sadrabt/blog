@@ -14,6 +14,7 @@ const Single = () => {
   const {currentUser} = useContext(Context)
   const [blog, setBlog] = useState({})
   const [replies, setReplies] = useState([])
+  const [repliesUpdated, setRepliesUpdated] = useState(0)
 
   const loc = useLocation()
   const id = loc.pathname.split("/")[2]
@@ -39,7 +40,7 @@ const Single = () => {
       }
     }
     getData()
-  }, [id])
+  }, [id, repliesUpdated])
 
   const onDelete = async () => {
     try {
@@ -96,12 +97,14 @@ const Single = () => {
             replies.filter(e => e.parent === null).map(reply => 
               <Reply
                 key={reply.id}
+                blogId={blog.id}
                 commentId={reply.id}
                 username={reply.username}
                 content={reply.content}
                 time={reply.time}
                 data = {replies}
                 depth={0}
+                update={setRepliesUpdated}
               />
             )
           }
