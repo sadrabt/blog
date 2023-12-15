@@ -78,6 +78,7 @@ const Single = () => {
                 />
                 <Comment
                   blogId={blog.id}
+                  updated={repliesUpdated}
                 />
               </div>
             {currentUser?.username === blog.username && (

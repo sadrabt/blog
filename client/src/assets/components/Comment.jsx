@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
-const Comment = ({blogId}) => {
+const Comment = ({blogId, updated}) => {
   const [comments, setComments] = useState(0)
   useEffect( () => {
     const getData = async () => {
@@ -13,7 +13,7 @@ const Comment = ({blogId}) => {
       }
     }
     getData()
-  }, [blogId])
+  }, [blogId, updated])
 
   return (
     <div className='likes-container'>
