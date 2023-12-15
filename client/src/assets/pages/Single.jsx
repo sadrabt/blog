@@ -7,6 +7,7 @@ import moment from "moment"
 import { Context } from '../context/context.jsx';
 import DOMPurify from "dompurify"
 import Reply from '../components/Reply.jsx';
+import ReplyBox from '../components/ReplyBox.jsx';
 
 
 const Single = () => {
@@ -41,6 +42,10 @@ const Single = () => {
     }
     getData()
   }, [id, repliesUpdated])
+
+  const update = () => {
+    setRepliesUpdated(repliesUpdated+1)
+  }
 
   const onDelete = async () => {
     try {
@@ -92,6 +97,14 @@ const Single = () => {
           </div>
           <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}} className='thread-body'>
           </p>
+          {currentUser?.username === blog.username ? <ReplyBox 
+            blog={id}
+            parent={null}
+            update={update}
+          /> :
+            <button onClick={() => {navigate("/login")}} className='btn'>Login to Comment</button>
+          }
+          
 
           <div className="replies">
           {
@@ -105,7 +118,7 @@ const Single = () => {
                 time={reply.time}
                 data = {replies}
                 depth={0}
-                update={setRepliesUpdated}
+                update={update}
               />
             )
           }

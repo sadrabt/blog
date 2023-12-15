@@ -262,3 +262,18 @@ i.fa-trash:hover{
     justify-content: space-between;
 }
 
+.comment-box {
+    max-width: 800px;
+}
+
+.reply-prompt {
+    font-size: smaller;
+    cursor: pointer;
+    color:gray;
+}
+
+.reply-prompt:hover  {
+    font-size: smaller;
+    cursor: pointer;
+    color: darkgray;
+}

@@ -1,20 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import moment from "moment"
 import { Context } from '../context/context'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import ReplyBox from './ReplyBox.jsx'
+import DOMPurify from "dompurify"
 
 const Reply = ({commentId, blogId, username, content, time, data, depth, update}) => {
     const {currentUser} = useContext(Context)
+    const [showReply, setShowReply] = useState(false)
     const navigate = useNavigate();
 
     const onDelete = async () => {
         try {
-            console.log("hellow")
           await axios.delete(`/comments/replies/${commentId}`)
-          update(commentId)
+          update()
         } catch (err) {
           console.log(err)
+        }
+    }
+
+    const openReply = async () => {
+        if (currentUser) {
+            setShowReply(!showReply)
+        } else {
+            navigate("/login")
         }
     }
 
@@ -30,8 +40,15 @@ const Reply = ({commentId, blogId, username, content, time, data, depth, update}
                 <span>Posted: {moment(time).fromNow()}</span>
             </div>
             </div>
+
+            <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}/>
+            {showReply && <ReplyBox
+                blog={blogId}
+                parent={commentId}
+                update={update}
+            />}
             <div>
-                {content}
+                <span onClick={openReply} className='reply-prompt'>Reply</span>
             </div>
         </div>
         {
