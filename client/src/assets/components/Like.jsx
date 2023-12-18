@@ -3,7 +3,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { Context } from '../context/context';
 
-const Like = ({blogId}) => {
+const Like = ({id, isComment = false}) => {
   const navigate = useNavigate();
   const {currentUser} = useContext(Context)
   const [likes, setLikes] = useState(0)
@@ -13,7 +13,7 @@ const Like = ({blogId}) => {
     const getData = async () => {
       try {
         const user = currentUser ? currentUser.id : -1
-        const resp = await axios.get(`/likes/${blogId}/${user}` )
+        const resp = await axios.get(`/likes${isComment? "/comments":""}/${id}/${user}` )
         setLikes(parseInt(resp.data[0]['likes']))
         setLiked(parseInt(resp.data[0]['liked']))
       } catch (err) {
@@ -21,7 +21,7 @@ const Like = ({blogId}) => {
       }
     }
     getData()
-  }, [blogId, currentUser, liked])
+  }, [id, currentUser, liked])
 
 
   const onLike = async () => {
@@ -29,7 +29,7 @@ const Like = ({blogId}) => {
     try {
       const user = currentUser ? currentUser.id : -1
       if (user != -1) {
-        const resp = await axios.post(`/likes/`, {id: blogId, user})
+        const resp = await axios.post(`/likes${isComment? "/comments":""}/`, {id: id, user})
         setLiked(!liked)
       } else {
         // navigate("/login")

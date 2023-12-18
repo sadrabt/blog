@@ -73,11 +73,12 @@ export const updatePost = (req, res)=> {
 
     jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Invalid Token")
-        const q = "UPDATE posts SET `title` = ? , `desc` = ?, `content` = ? WHERE `id` = ? AND `uid` = ?";
+        const q = "UPDATE posts SET `title` = ? , `desc` = ?, `content` = ?, `edit` = ? WHERE `id` = ? AND `uid` = ?";
         const values = [
             req.body.title,
             req.body.desc,
             req.body.content,
+            req.body.edit,
         ]
   
         database.query(q, [...values, req.params.id, userInfo.id], (err, data) => {

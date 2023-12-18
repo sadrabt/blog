@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import ReplyBox from './ReplyBox.jsx'
 import DOMPurify from "dompurify"
+import Like from './Like.jsx'
 
 const Reply = ({commentId, blogId, username, content, time, data, depth, update}) => {
     const {currentUser} = useContext(Context)
@@ -49,6 +50,10 @@ const Reply = ({commentId, blogId, username, content, time, data, depth, update}
             />}
             <div>
                 <span onClick={openReply} className='reply-prompt'>Reply</span>
+                <Like
+                  id={commentId}
+                  isComment={true}
+                />
             </div>
         </div>
         {

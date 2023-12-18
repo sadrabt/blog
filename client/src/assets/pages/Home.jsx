@@ -59,7 +59,7 @@ const Home = () => {
             <div className="quick-stats">
               <div className='social'>
                 <Like
-                  blogId={blog.id}
+                  id={blog.id}
                 />
                 <Comment
                   blogId={blog.id}

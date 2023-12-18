@@ -259,8 +259,12 @@ i.fa-trash:hover{
     border-bottom:  1px solid #264F0B;
 }
 
-.replies .reply i {
+.replies .reply i.fa-trash {
     margin-right: 10px;
+}
+
+.replies .reply p {
+    margin-bottom: 5px;
 }
 
 .replies .reply .info {

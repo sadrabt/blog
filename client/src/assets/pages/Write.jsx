@@ -19,6 +19,7 @@ const Write = () => {
           title,
           desc,
           content,
+          edit: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         })
       : await axios.post(`/posts/`, {
           title,

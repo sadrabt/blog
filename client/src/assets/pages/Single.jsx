@@ -73,13 +73,13 @@ const Single = () => {
               By: {blog.username}
             </span>
             <span>
-              {moment(blog.date).format('llll')}
+              {blog.edit?`Last edited: ${(moment(blog.edit).format('llll'))}`:(moment(blog.date).format('llll'))}
             </span>
           </div>
           <div className="action">
             <div className='social'>
                 <Like
-                  blogId={blog.id}
+                  id={blog.id}
                 />
                 <Comment
                   blogId={blog.id}
