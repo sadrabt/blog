@@ -19,7 +19,7 @@ const Header = () => {
           <div className="col-lg-9">
             <nav className="navigator">
               <ul class="nav">
-                <li class="menu-item active">
+                {/* <li class="menu-item active">
                   <Link className='header-link' to="/">
                     Posts
                   </Link>
@@ -33,7 +33,7 @@ const Header = () => {
                   <Link className='header-link' to="/?cat=random">
                     Random
                   </Link>
-                </li>
+                </li> */}
               </ul>
               {currentUser ? 
               (

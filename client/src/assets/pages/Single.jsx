@@ -97,7 +97,7 @@ const Single = () => {
           </div>
           <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}} className='thread-body'>
           </p>
-          {currentUser?.username === blog.username ? <ReplyBox 
+          {currentUser?  <ReplyBox 
             blog={id}
             parent={null}
             update={update}

@@ -2,7 +2,17 @@ import { database } from "../database.js";
 import jwt from "jsonwebtoken";
 
 export const getPosts = (req, res)=> {
-    const q = "SELECT P.* FROM posts P ";
+    const q = "SELECT P.* FROM blog.posts P ORDER BY P.date DESC LIMIT ? OFFSET ?";
+    console.log(req.params.offset)
+    database.query(q, [parseInt(req.params.limit), parseInt(req.params.offset)], (err, data) => {
+        console.log(err)
+        if (err) return res.status(500).json(err)
+        return res.status(200).json(data)
+    })
+}
+
+export const getCount = (req, res) => {
+    const q = "SELECT COUNT(*) FROM posts";
     database.query(q, [], (err, data) => {
         if (err) return res.status(500).json(err)
         return res.status(200).json(data)
