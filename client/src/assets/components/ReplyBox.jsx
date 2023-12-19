@@ -8,6 +8,7 @@ const ReplyBox = ({blog, parent, update}) => {
 
     const onSubmit = async () => {
         try {
+          console.log(blog)
           await axios.post(`/comments/`, {
               blog,
               parent,

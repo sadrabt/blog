@@ -41,7 +41,6 @@ export const addReply = (req, res)=> {
     jwt.verify(token, "jwtkey", (err, userInfo) => {
         if (err) return res.status(403).json("Invalid Token")
         const q = "INSERT INTO comments(`content`, `pid`, `time`,`uid`, `parent`) VALUES (?)"
-        // const parent = req.body.parent === null : "NULL"
         const values = [
             req.body.content,
             req.body.blog,
@@ -49,10 +48,7 @@ export const addReply = (req, res)=> {
             userInfo.id,
             req.body.parent
         ]
-        console.log(values)
         database.query(q, [values], (err, data) => {
-            console.log(err)
-            console.log(data)
             if (err) return res.status(500).json(err)
             return res.status(200).json("Comment Added")
         })

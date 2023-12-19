@@ -31,19 +31,16 @@ export const like = (req, res)=> {
 }
 
 export const getCommentLikes = (req, res)=> {
-    const q = "SELECT EXISTS(SELECT * FROM comment_likes L2 WHERE L2.cid = ? AND L2.uid = ?) AS liked, COUNT(L.cid) AS likes FROM posts P LEFT JOIN comment_likes L ON P.id = L.cid WHERE P.id = ? GROUP BY P.id";
+    const q = "SELECT EXISTS(SELECT * FROM comment_likes L2 WHERE L2.cid = ? AND L2.uid = ?) AS liked, COUNT(L.cid) AS likes FROM comments C LEFT JOIN comment_likes L ON C.id = L.cid WHERE C.id = ? GROUP BY C.id";
     database.query(q, [req.params.id, req.params.user, req.params.id], (err, data) => {
-        console.log(err)
         if (err) return res.status(500).json(err)
         return res.status(200).json(data)
     })
 }
 
 export const commentLike = (req, res)=> {
-
     const q = "SELECT * FROM comment_likes L WHERE L.uid = ? AND L.cid = ?"
     database.query(q, [req.body.user, req.body.id], (err, data) => {
-        
         if (err) return res.status(500).json(err)
         if (data.length) {
             const q = "DELETE FROM `blog`.`comment_likes` WHERE (`cid` = ?) and (`uid` = ?);"

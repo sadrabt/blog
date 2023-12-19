@@ -60,6 +60,7 @@ const Reply = ({commentId, blogId, username, content, time, data, depth, update}
             data?.filter(e => e.parent === commentId).map(reply =>
                 <Reply 
                     key={reply.id}
+                    blogId={blogId}
                     commentId={reply.id}
                     username={reply.username}
                     content={reply.content}
