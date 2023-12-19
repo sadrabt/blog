@@ -14,7 +14,6 @@ const Like = ({id, isComment = false}) => {
       try {
         const user = currentUser ? currentUser.id : -1
         const resp = await axios.get(`/likes${isComment? "/comments":""}/${id}/${user}` )
-        console.log(resp.data[0])
         setLikes(parseInt(resp.data[0]['likes']))
         setLiked(parseInt(resp.data[0]['liked']))
       } catch (err) {
